@@ -9,7 +9,7 @@ public static void main(String args[]){
 try{
 Class.forName("com.mysql.jdbc.Driver");
 
-Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/spa_database","root","");
+Connection con=DriverManager.getConnection("jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2240093","sql2240093","cC6!xF7*");
 //here sonoo is the database name, root is the username and root is the password
 Statement stmt=con.createStatement();
 
