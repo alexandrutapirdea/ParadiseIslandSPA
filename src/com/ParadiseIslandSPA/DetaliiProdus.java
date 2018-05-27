@@ -2,6 +2,7 @@ package com.ParadiseIslandSPA;
 
 public class DetaliiProdus 
 {
+	String idProdus;
 	String numeProdus;
 	String tipProdus;
 	double pretProdus;
@@ -31,6 +32,10 @@ public class DetaliiProdus
 	{
 		return pretProdus;
 	}
-
+	
+	public String getIdProdus()
+	{
+		return idProdus;
+	}
 	
 }
