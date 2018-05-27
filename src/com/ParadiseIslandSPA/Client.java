@@ -10,7 +10,8 @@ public class Client
 	PortofelVirtual portofelulMeu;
 	String zona = "";
 	
-	//TO DO constructor
+	//TO DO constructor //*john: Sa te uiti in baza de date cum sa faci constructorul 
+	//*john:TO DO gettere si settere
 	
 	//TO DO with JOHN
 	public boolean loginClient(String email, String password)
