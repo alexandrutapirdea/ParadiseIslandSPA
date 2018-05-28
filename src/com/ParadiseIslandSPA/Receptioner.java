@@ -4,22 +4,30 @@ import java.util.*;
 
 public class Receptioner 
 {
-	
+	private Receptioner() {}
 	static Map<String, Client> clientMapTmp;
-		
 	
-	public static void setNewClient(String email, String password, String nume, String prenume)
+	
+	public static boolean setNewClient(String email, String password, String nume, String prenume)
 	{	
 		Client clientTmp = new Client(email, nume, prenume);
 		BazaDeDate.addNewClient(clientTmp, password);		
+		System.out.println("email " + email + "passwrod " + password + 
+				            "nume " + nume + "prenume " + prenume) ;
 		
-		clientMapTmp.put(clientTmp.getEmail(), clientTmp);
+		if(BazaDeDate.addNewClient(clientTmp, password))
+			{
+			clientMapTmp.put(clientTmp.getEmail(), clientTmp);
+			 return true;
+			}
+		else
+			return false;
 	}
 	
 	
 	public static boolean loginClient(String email, String password)
 	{
-		
+		System.out.println("email " + email + "  " + "password " + password);
 		return BazaDeDate.loginValidation(email, password);
 	}
 	
