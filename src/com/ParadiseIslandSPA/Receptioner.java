@@ -48,9 +48,16 @@ public class Receptioner
 		return BazaDeDate.getListaProduse(tipProdus);		
 	}
 	
+	//TO DO with JOHN hardcoded atm
 	public static List<String> afisareCategorii()
 	{
-		return BazaDeDate.getListaTipProdus();
+		List<String> typeList = new LinkedList<String>();
+		typeList.add("Zone");
+		typeList.add("Bar");
+		typeList.add("Restaurant");
+		typeList.add("Servicii");
+		
+		return typeList;
 	}
 	
 	//TO DO with JOHN

@@ -14,7 +14,7 @@ public class DetaliiProdus
 		this.numeProdus = numeProdus;
 		this.pretProdus = pretProdus;
 		this.idProdus = idProdus;
-		this.cantitateProdus += cantitate;
+		this.cantitateProdus = cantitate;
 		
 		pretTotalProdus = pretProdus*cantitate;
 	}
