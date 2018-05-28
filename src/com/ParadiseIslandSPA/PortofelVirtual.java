@@ -4,8 +4,8 @@ import java.util.*;
 
 public class PortofelVirtual 
 {	
-	double bilant;
-	Map<String,ProdusCumparat> chitanta;
+	private double bilant;
+	private Map<String, DetaliiProdus> chitanta;
 	
 	public PortofelVirtual()
 	{
@@ -18,37 +18,45 @@ public class PortofelVirtual
 		chitanta.clear();
 	}
 	
-	public String adaugaBilant(String idProdus, int cantitate)
+	public Boolean adaugaBilant(List<DetaliiProdus> dpList)
 	{
 	
-		Double suma = cantitate * (BazaDeDate.getProdusById(idProdus).getPretProdus());
-		
-		try
-		{
-			ProdusCumparat produsExistent =  chitanta.get(idProdus); 
-			produsExistent.setCantitateProdus(cantitate);
-			chitanta.put(idProdus, produsExistent);								
-				
-		}catch(Exception e)
-		{
-			ProdusCumparat produsCumparatTmp = new ProdusCumparat(idProdus, cantitate);
-			chitanta.put(idProdus, produsCumparatTmp);	
+		for(DetaliiProdus dpTmp : dpList)
+		{	
+			Double suma = dpTmp.getCantitateProdus() * dpTmp.getPretProdus();
 			
-		}finally
-		{
-			bilant += suma;
-		 	return "Tranzactie completatata cu succes! Bilant: " + bilant + " RON"; 
-		}		
+			try
+			{
+				chitanta.get(dpTmp.getIdProdus()).updateProdus(dpTmp.getCantitateProdus()); 												
+					
+			}catch(Exception e)
+			{
+				
+				chitanta.put(dpTmp.getIdProdus(), dpTmp);	
+				
+			}finally
+			{
+				bilant += suma;
+			 	
+			}
+		}
+		
+		return true; 
 	}
 	
-	public ProdusCumparat getProdus(String idProdus)
+	public DetaliiProdus getProdus(String idProdus)
 	{
 		return chitanta.get(idProdus);
 	}
 	
-	public List<ProdusCumparat> getChitanta()
+	public double getBilant()
 	{
-		List<ProdusCumparat> pcListTmp = new LinkedList<ProdusCumparat>(); 
+		return bilant;
+	}
+	
+	public List<DetaliiProdus> getChitanta()
+	{
+		List<DetaliiProdus> pcListTmp = new LinkedList<DetaliiProdus>(); 
 		
 		for(String idTmp : chitanta.keySet())
 		{

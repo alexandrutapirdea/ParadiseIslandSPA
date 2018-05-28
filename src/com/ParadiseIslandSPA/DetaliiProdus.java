@@ -2,31 +2,33 @@ package com.ParadiseIslandSPA;
 
 public class DetaliiProdus 
 {
-	String idProdus;
-	String numeProdus;
-	String tipProdus;
-	double pretProdus;
+	private String idProdus;
+	private String numeProdus;
+	private double pretProdus;
+	private double pretTotalProdus;
+	private Integer cantitateProdus;
 	
-	public DetaliiProdus(String numeProdus, String tipProdus, double pretProdus) 
+	public DetaliiProdus(String idProdus, String numeProdus, double pretProdus, Integer cantitate) 
 	{
 		super();
 		this.numeProdus = numeProdus;
-		this.tipProdus = tipProdus;
 		this.pretProdus = pretProdus;
+		this.idProdus = idProdus;
+		this.cantitateProdus += cantitate;
+		
+		pretTotalProdus = pretProdus*cantitate;
 	}
-
+	
 	
 	public String getNumeProdus() 
 	{
 		return numeProdus;
 	}
 	
-	
-	public String getTipProdus() 
+	public Integer getCantitateProdus() 
 	{
-		return tipProdus;
+		return cantitateProdus;
 	}
-	
 
 	public double getPretProdus() 
 	{
@@ -37,5 +39,18 @@ public class DetaliiProdus
 	{
 		return idProdus;
 	}
+	
+	public double getPretTotalProdus()
+	{
+		return pretTotalProdus;
+	}
+	
+	public void updateProdus(int cantitate)
+	{
+		cantitateProdus += cantitate; 
+		
+		pretTotalProdus = cantitateProdus * pretProdus;
+	}
+	
 	
 }

@@ -4,22 +4,28 @@ import java.util.*;
 
 public class Receptioner 
 {
-	private Receptioner() {}
 	static Map<String, Client> clientMapTmp;
 	
+	
+	private Receptioner() 
+	{
+		
+	}
 	
 	public static boolean setNewClient(String email, String password, String nume, String prenume)
 	{	
 		Client clientTmp = new Client(email, nume, prenume);
-		BazaDeDate.addNewClient(clientTmp, password);		
-		System.out.println("email " + email + "passwrod " + password + 
-				            "nume " + nume + "prenume " + prenume) ;
+		
+		BazaDeDate.addNewClient(clientTmp, password);	
+		
+		//System.out.println("email " + email + "passwrod " + password + "nume " + nume + "prenume " + prenume) ;
 		
 		if(BazaDeDate.addNewClient(clientTmp, password))
-			{
+		{
 			clientMapTmp.put(clientTmp.getEmail(), clientTmp);
-			 return true;
-			}
+			
+			return true;
+		}
 		else
 			return false;
 	}
@@ -27,19 +33,24 @@ public class Receptioner
 	
 	public static boolean loginClient(String email, String password)
 	{
-		System.out.println("email " + email + "  " + "password " + password);
+		//System.out.println("email " + email + "  " + "password " + password);
 		return BazaDeDate.loginValidation(email, password);
 	}
 	
-	public static String cumparareProdus(String idProdus, int cantitate, String email)
+	public static Boolean cumparareProdus(List<DetaliiProdus> dpList, String email)
 	{				
-		return getClient(email).portofelulMeu.adaugaBilant(idProdus, cantitate);
+		return getClient(email).cumparareProdus(dpList);
 	}
 	
 	//TO DO with JOHN
 	public static List<DetaliiProdus> afisareProduse(String tipProdus)
 	{
 		return BazaDeDate.getListaProduse(tipProdus);		
+	}
+	
+	public static List<String> afisareCategorii()
+	{
+		return BazaDeDate.getListaTipProdus();
 	}
 	
 	//TO DO with JOHN
@@ -53,14 +64,17 @@ public class Receptioner
 		return getClient(email).requestAcces(idZona);
 	}
 	
-
-	public static List<ProdusCumparat> getChitanta(String email)
+	public static double getBilantClient(String email)
 	{
-		List<ProdusCumparat> chitantaTmp =  getClient(email).getChitanta();
+		return getClient(email).getPortofelulMeu().getBilant();
+	}
+
+	public static List<DetaliiProdus> getChitanta(String email)
+	{
+		List<DetaliiProdus> chitantaTmp =  getClient(email).getChitanta();
+				
 		
-		//afisare TO DO WITH ALL
-		
-		getClient(email).portofelulMeu.reset();	
+		getClient(email).getPortofelulMeu().reset();	
 		
 		clientMapTmp.remove(email);
 		

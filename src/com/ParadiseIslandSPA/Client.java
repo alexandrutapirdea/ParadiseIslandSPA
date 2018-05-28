@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Client 
 {
-	String email;
-	String prenume;
-	String nume;
-	PortofelVirtual portofelulMeu;
-	String zona = "";
+	private String email;
+	private String prenume;
+	private String nume;
+	private PortofelVirtual portofelulMeu;
+	private String zona = "";
 
 	public Client(String e, String p, String n)
 	{
@@ -33,13 +33,18 @@ public class Client
 	{
 		return prenume;
 	}
+	
+	public PortofelVirtual getPortofelulMeu()
+	{
+		return portofelulMeu;
+	}
 
-	String cumparareProdus(String idProdus, int cantitate)
+	public Boolean cumparareProdus(List<DetaliiProdus> dpList)
 	{				
-		return portofelulMeu.adaugaBilant(idProdus, cantitate);
+		return portofelulMeu.adaugaBilant(dpList);
 	}
 	
-	public List<ProdusCumparat> getChitanta()
+	public List<DetaliiProdus> getChitanta()
 	{
 		return portofelulMeu.getChitanta();
 	}
