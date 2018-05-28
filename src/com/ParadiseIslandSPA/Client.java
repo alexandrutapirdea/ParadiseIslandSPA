@@ -9,20 +9,29 @@ public class Client
 	String nume;
 	PortofelVirtual portofelulMeu;
 	String zona = "";
-	
-	//TO DO constructor //*john: Sa te uiti in baza de date cum sa faci constructorul 
-	//*john:TO DO gettere si settere
-	
-	//TO DO with JOHN
-	public boolean loginClient(String email, String password)
+
+	public Client(String e, String p, String n)
 	{
-		//return BazaDeDate.loginValidation(email, password);
+		email = e;
+		prenume = p;
+		nume = n;
+		
+		portofelulMeu = new PortofelVirtual();		
 	}
 	
-	//TO DO with JOHN
-	public  List<DetaliiProdus> afisareProduse(String tipProdus)
+	public String getEmail()
 	{
-		//return BazaDeDate.getListaProduse(tipProdus);		
+		return email;
+	}
+	
+	public String getNume()
+	{
+		return nume;
+	}
+	
+	public String getPrenume()
+	{
+		return prenume;
 	}
 
 	String cumparareProdus(String idProdus, int cantitate)

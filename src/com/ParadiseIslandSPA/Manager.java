@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Manager 
 {
-	public Map<String,Integer> getZoneStatus()
+	static Map<String,Integer> statsMapTmp;
+	
+	public static Map<String,Integer> getZoneStatus()
 	{
-		Map<String,Integer> statsMapTmp;
-		
 		statsMapTmp.put("ZonaA", ZoneStats.nrPersoaneZonaA);
 		statsMapTmp.put("ZonaB", ZoneStats.nrPersoaneZonaB);
 		statsMapTmp.put("ZonaC", ZoneStats.nrPersoaneZonaC);
