@@ -1,5 +1,7 @@
 package com.ParadiseIslandSPA;
 
+import java.util.List;
+
 public class TestBazaDeDate {
 
 	public static void main(String[] args) {
@@ -20,6 +22,13 @@ public class TestBazaDeDate {
 			System.out.println("Valid login info");
 		}else {
 			System.out.println("NOT Valid login info");
+		}
+		
+		List<DetaliiProdus> lista = BazaDeDate.getListaProduse("Bar");
+		
+		for (DetaliiProdus pr : lista) {
+			System.out.println(pr.getNumeProdus());
+			
 		}
 		
 	}

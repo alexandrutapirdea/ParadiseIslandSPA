@@ -145,41 +145,41 @@ class BazaDeDate {
 		
 	}
 	
-//	public static List<DetaliiProdus> getListaProduse(String tipProdus){
-//		
-//		String query = "Select * from produse where tip_produs = ?"; //De verificat si aici
-//		
-//		List<DetaliiProdus> listaProduse= new ArrayList<>();
-//		String nume,tip;
-//		double pret;
-//		
-//		try(Connection connection = DriverManager.getConnection(connectionLink);
-//				PreparedStatement ps = connection.prepareStatement(query)){
-//			 	
-//				ps.setString(1, tipProdus); 
-//				
-//				try(ResultSet rs = ps.executeQuery()){
-//					while(rs.next()) {
-//						nume = rs.getString(2);
-//			 			pret = rs.getDouble(3);
-//			 			tip = rs.getString(4);
-//				 		DetaliiProdus produs = new DetaliiProdus(nume,tip,pret);
-//				 		listaProduse.add(produs);
-//						
-//					}
-//			 		
-//			 	} catch (SQLException ex) {
-//			             Logger.getLogger(BazaDeDate.class.getName()).log(Level.SEVERE, null, ex);	             
-//			        }
-//		} catch (SQLException ex)  {
-//			Logger.getLogger(BazaDeDate.class.getName()).log(Level.SEVERE, null, ex);
-//		}
-//		finally {
-//			return listaProduse;
-//		}
-//		
-//	}
-//	
+	public static List<DetaliiProdus> getListaProduse(String tipProdus){
+		
+		String query = "Select * from produse where Tip = ?"; 
+		
+		List<DetaliiProdus> listaProduse= new ArrayList<>();
+		String nume,tip;
+		double pret;
+		
+		try(Connection connection = DriverManager.getConnection(connectionURL, connectionUser, connectionPass);
+				PreparedStatement ps = connection.prepareStatement(query)){
+			 	
+				ps.setString(1, tipProdus); 
+				
+				try(ResultSet rs = ps.executeQuery()){
+					while(rs.next()) {
+						nume = rs.getString(2);
+			 			pret = rs.getDouble(3);
+			 			tip = rs.getString(4);
+				 		DetaliiProdus produs = new DetaliiProdus(nume,tip,pret);
+				 		listaProduse.add(produs);
+						
+					}
+			 		
+			 	} catch (SQLException ex) {
+			             Logger.getLogger(BazaDeDate.class.getName()).log(Level.SEVERE, null, ex);	             
+			        }
+		} catch (SQLException ex)  {
+			Logger.getLogger(BazaDeDate.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		finally {
+			return listaProduse;
+		}
+		
+	}
+	
 
 //	public static void main(String args[]) {
 //		System.out.println("Da");
