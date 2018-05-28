@@ -10,18 +10,19 @@ public class Client
 	PortofelVirtual portofelulMeu;
 	String zona = "";
 	
-	//TO DO constructor
 	
-	//TO DO with JOHN
-	public boolean loginClient(String email, String password)
+	public Client(String e, String p, String n)
 	{
-		//return BazaDeDate.loginValidation(email, password);
+		email = e;
+		prenume = p;
+		nume = n;
+		
+		portofelulMeu = new PortofelVirtual();		
 	}
 	
-	//TO DO with JOHN
-	public  List<DetaliiProdus> afisareProduse(String tipProdus)
+	public String getEmail()
 	{
-		//return BazaDeDate.getListaProduse(tipProdus);		
+		return email;
 	}
 
 	String cumparareProdus(String idProdus, int cantitate)

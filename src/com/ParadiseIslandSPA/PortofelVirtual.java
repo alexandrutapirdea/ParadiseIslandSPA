@@ -3,8 +3,7 @@ package com.ParadiseIslandSPA;
 import java.util.*;
 
 public class PortofelVirtual 
-{
-	//TO DO commit bilant to db
+{	
 	double bilant;
 	Map<String,ProdusCumparat> chitanta;
 	
@@ -16,6 +15,7 @@ public class PortofelVirtual
 	public void reset()
 	{
 		bilant = 0;
+		chitanta.clear();
 	}
 	
 	public String adaugaBilant(String idProdus, int cantitate)
@@ -57,6 +57,6 @@ public class PortofelVirtual
 		
 		return pcListTmp;
 	}
-
+	
 	
 }
