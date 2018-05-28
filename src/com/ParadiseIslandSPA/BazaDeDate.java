@@ -91,7 +91,7 @@ class BazaDeDate {
 	
 	public static boolean addNewClient(Client client, String password) {
 		
-		// De verificat aici denumirile
+		
 		String query = "INSERT INTO clienti ( Nume, Prenume, Email, Password, Bilant,Privilege)" + "values(?,?,?,?,?,?)";
 		
 		try(Connection connection = DriverManager.getConnection(connectionURL,connectionUser, connectionPass);
