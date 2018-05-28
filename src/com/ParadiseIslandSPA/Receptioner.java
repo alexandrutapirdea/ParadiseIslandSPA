@@ -31,7 +31,7 @@ public class Receptioner
 	//TO DO with JOHN
 	public static List<DetaliiProdus> afisareProduse(String tipProdus)
 	{
-		//return BazaDeDate.getListaProduse(tipProdus);		
+		return BazaDeDate.getListaProduse(tipProdus);		
 	}
 	
 	//TO DO with JOHN

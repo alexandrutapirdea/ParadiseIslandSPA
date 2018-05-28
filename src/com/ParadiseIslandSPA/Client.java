@@ -23,6 +23,16 @@ public class Client
 	{
 		return email;
 	}
+	
+	public String getNume()
+	{
+		return nume;
+	}
+	
+	public String getPrenume()
+	{
+		return prenume;
+	}
 
 	String cumparareProdus(String idProdus, int cantitate)
 	{				
