@@ -6,23 +6,21 @@ public class Receptioner
 {
 	
 	static Map<String, Client> clientMapTmp;
-	//TO DO, remember logged in client, have purge options, can get data for any clients
+		
 	
-	//TO DO with JOHN
 	public static void setNewClient(String email, String password, String nume, String prenume)
 	{	
 		Client clientTmp = new Client(email, nume, prenume);
-		BazaDeDate.Add(clientTmp, password);
-		clientTmp = BazaDeDate.getClientByEmail(email);
+		BazaDeDate.addNewClient(clientTmp, password);		
 		
 		clientMapTmp.put(clientTmp.getEmail(), clientTmp);
 	}
 	
-	//TO DO with JOHN
+	
 	public static boolean loginClient(String email, String password)
 	{
 		
-		//return BazaDeDate.loginValidation(email, password);
+		return BazaDeDate.loginValidation(email, password);
 	}
 	
 	public static String cumparareProdus(String idProdus, int cantitate, String email)
