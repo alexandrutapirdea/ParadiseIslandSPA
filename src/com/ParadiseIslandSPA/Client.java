@@ -9,8 +9,7 @@ public class Client
 	String nume;
 	PortofelVirtual portofelulMeu;
 	String zona = "";
-	
-	
+
 	public Client(String e, String p, String n)
 	{
 		email = e;
