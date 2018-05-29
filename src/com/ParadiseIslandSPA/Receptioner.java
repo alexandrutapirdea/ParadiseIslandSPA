@@ -46,7 +46,10 @@ public class Receptioner
 					if(tmpIdMap.containsKey(i))						
 					{
 						if(tmpIdMap.get(i))
+						{
 							getClient(email).setIdTmp(i);
+							tmpIdMap.put(i, true);
+						}
 					}
 					else
 					{
