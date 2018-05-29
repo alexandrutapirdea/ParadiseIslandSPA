@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Manager 
 {
-	static Map<String,Integer> statsMapTmp;
+	static Map<String,Integer> statsMapTmp = new HashMap<String, Integer>();
 	
 	public static Map<String,Integer> getZoneStatus()
 	{

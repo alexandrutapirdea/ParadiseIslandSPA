@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Client 
 {
+	private Integer idTmp;
 	private String email;
 	private String prenume;
 	private String nume;
@@ -17,6 +18,16 @@ public class Client
 		nume = n;
 		
 		portofelulMeu = new PortofelVirtual();		
+	}
+	
+	public Integer getIdTmp()
+	{
+		return idTmp;
+	}
+	
+	public void setIdTmp(Integer i)
+	{
+		idTmp = i; 
 	}
 	
 	public String getEmail()
@@ -81,10 +92,11 @@ public class Client
 				ZoneStats.nrPersoaneZonaB--;
 			
 			return "Acces aprobat";
-		}catch(Exception e)
+		}catch(NullPointerException e)
 		{
-			return "Accesul nu va este permis in aceasta zona";
+			
 		}
+		return "Accesul nu va este permis in aceasta zona";
 	}
 
 }

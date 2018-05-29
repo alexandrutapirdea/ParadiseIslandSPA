@@ -5,7 +5,7 @@ import java.util.*;
 public class PortofelVirtual 
 {	
 	private double bilant;
-	private Map<String, DetaliiProdus> chitanta;
+	private Map<String, DetaliiProdus> chitanta = new HashMap<String, DetaliiProdus>();
 	
 	public PortofelVirtual()
 	{
@@ -25,20 +25,17 @@ public class PortofelVirtual
 		{	
 			Double suma = dpTmp.getCantitateProdus() * dpTmp.getPretProdus();
 			
-			try
+			if(chitanta.containsKey(dpTmp.getIdProdus()))
 			{
-				chitanta.get(dpTmp.getIdProdus()).updateProdus(dpTmp.getCantitateProdus()); 												
-					
-			}catch(Exception e)
-			{
-				
-				chitanta.put(dpTmp.getIdProdus(), dpTmp);	
-				
-			}finally
-			{
-				bilant += suma;
-			 	
+				chitanta.get(dpTmp.getIdProdus()).updateProdus(dpTmp.getCantitateProdus());	
 			}
+			else
+			{				
+				chitanta.put(dpTmp.getIdProdus(), dpTmp);				
+			}
+			
+				bilant += suma;			 	
+			
 		}
 		
 		return true; 
