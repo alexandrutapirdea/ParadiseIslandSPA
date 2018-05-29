@@ -24,7 +24,7 @@ public class Succes extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+	/** 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,12 +36,12 @@ public class Succes extends HttpServlet {
 		out.println("<h2>" + email +"<h2>");
 		out.println("<h2>" + password +"<h2>");
 		//Este bine aici; decomenteaza dupa john
-//		if(Receptioner.loginClient(email, password))
-//			 request.getRequestDispatcher("Succes.jsp").forward(request,response);
-//		else
-//			out.println("<h2>Naspa</h2>");
+		if(Receptioner.loginClient(email, password))
+			 request.getRequestDispatcher("Succes.jsp").forward(request,response);
+		else
+			out.println("<h2>Naspa</h2>");
 		// ca sa ajungem la pagina :
-		request.getRequestDispatcher("Succes.jsp").forward(request,response);
+		
 		
 	}
 

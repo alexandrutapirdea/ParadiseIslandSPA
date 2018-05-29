@@ -6,25 +6,45 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 
 class BazaDeDate {
+	
+	static private DataSource dbRes;
 
-	private static String connectionURL = "jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2240093";
-	private static String connectionUser = "sql2240093";
-	private static String connectionPass = "cC6!xF7*";
-
-	private BazaDeDate() {
-	}
+    private BazaDeDate()
+    {
+    }
+    
+    static
+    {
+        try
+        {
+        Context initCtx = new InitialContext();
+        Context envCtx = (Context) initCtx.lookup("java:comp/env");
+        dbRes = (DataSource) envCtx.lookup("jdbc/paospa");
+        }
+        catch (NamingException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+    
 
 	public static DetaliiProdus getProdusById(String idProdus) {
 		
 		String query ="SELECT * FROM produse WHERE idProdus=?";
 		
 		DetaliiProdus produs = null;
-		String nume,tip;
-		double pret;
+		String nume,id;
+		double pret; 
 		
-		try(Connection connection = DriverManager.getConnection(connectionURL,connectionUser,connectionPass);
+		try(Connection connection = dbRes.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query)){
 			 	
 				ps.setString(1, idProdus);
@@ -32,10 +52,11 @@ class BazaDeDate {
 				try(ResultSet rs = ps.executeQuery()){
 			 		
 			 		rs.next();
+			 		id = rs.getString(1);
 		 			nume = rs.getString(2);
 		 			pret = rs.getDouble(3);
-		 			tip = rs.getString(4);
-			 		produs = new DetaliiProdus(nume,tip,pret);
+		 			//tip = rs.getString(4);
+			 		produs = new DetaliiProdus(id,nume,pret,0);
 			 		return produs;
 			 		
 			 	} catch (SQLException ex) {
@@ -63,7 +84,7 @@ class BazaDeDate {
 //		boolean admin;
 //		
 //		
-//		try(Connection connection = DriverManager.getConnection(connectionLink);
+//		try(Connection connection = dbRes.getConnection();
 //				PreparedStatement ps = connection.prepareStatement(query)){
 //			 	
 //				ps.setString(1, email);
@@ -94,7 +115,7 @@ class BazaDeDate {
 		
 		String query = "INSERT INTO clienti ( Nume, Prenume, Email, Password, Bilant,Privilege)" + "values(?,?,?,?,?,?)";
 		
-		try(Connection connection = DriverManager.getConnection(connectionURL,connectionUser, connectionPass);
+		try(Connection connection = dbRes.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query)){
 			 	
 				
@@ -115,11 +136,11 @@ class BazaDeDate {
 		}
 	}
 	
-	public static boolean loginValidation (String email, String password) {
+	public static boolean loginValidation (String email, String password)  {
 		
 		String query = "Select count(*) from clienti where Email = ? and Password = ?";
 		
-		try(Connection connection = DriverManager.getConnection(connectionURL, connectionUser, connectionPass);
+		try(Connection connection = dbRes.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query)){
 			 	
 				ps.setString(1, email); 
@@ -135,10 +156,12 @@ class BazaDeDate {
 					}
 			 		
 			 	} catch (SQLException ex) {
+			 			System.out.println("aici!!!!");
 			             Logger.getLogger(BazaDeDate.class.getName()).log(Level.SEVERE, null, ex);
 			             return false;
 			        }
 		} catch (SQLException ex)  {
+			System.out.println("aici2!!!!");
 			Logger.getLogger(BazaDeDate.class.getName()).log(Level.SEVERE, null, ex);
 			return false;
 		}
@@ -150,20 +173,21 @@ class BazaDeDate {
 		String query = "Select * from produse where Tip = ?"; 
 		
 		List<DetaliiProdus> listaProduse= new ArrayList<>();
-		String nume,tip;
+		String nume,id;
 		double pret;
 		
-		try(Connection connection = DriverManager.getConnection(connectionURL, connectionUser, connectionPass);
+		try(Connection connection = dbRes.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query)){
 			 	
 				ps.setString(1, tipProdus); 
 				
 				try(ResultSet rs = ps.executeQuery()){
 					while(rs.next()) {
+						id = rs.getString(1);
 						nume = rs.getString(2);
 			 			pret = rs.getDouble(3);
-			 			tip = rs.getString(4);
-				 		DetaliiProdus produs = new DetaliiProdus(nume,tip,pret);
+			 		//	tip = rs.getString(4);
+				 		DetaliiProdus produs = new DetaliiProdus(id,nume,pret,0);
 				 		listaProduse.add(produs);
 						
 					}

@@ -6,11 +6,11 @@ public class TestBazaDeDate {
 
 	public static void main(String[] args) {
 		
-		DetaliiProdus produs = BazaDeDate.getProdusById("5");
-		
-		System.out.println(produs.getNumeProdus());
-		System.out.println(produs.getPretProdus());
-		System.out.println(produs.getTipProdus());
+//		DetaliiProdus produs = BazaDeDate.getProdusById("5");
+//		
+//		System.out.println(produs.getNumeProdus());
+//		System.out.println(produs.getPretProdus());
+//		System.out.println(produs.getTipProdus());
 		
 //		Client client = new Client("Zaraza", "Carlos", "carlitozzz@corunia.com");
 //		
@@ -23,13 +23,13 @@ public class TestBazaDeDate {
 		}else {
 			System.out.println("NOT Valid login info");
 		}
-		
-		List<DetaliiProdus> lista = BazaDeDate.getListaProduse("Bar");
-		
-		for (DetaliiProdus pr : lista) {
-			System.out.println(pr.getNumeProdus());
-			
-		}
+//		
+//		List<DetaliiProdus> lista = BazaDeDate.getListaProduse("Bar");
+//		
+//		for (DetaliiProdus pr : lista) {
+//			System.out.println(pr.getNumeProdus());
+//			
+//		}
 		
 	}
 }
