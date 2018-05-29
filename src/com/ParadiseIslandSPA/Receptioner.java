@@ -93,7 +93,7 @@ public class Receptioner
 		return clientMapTmp.get(email);
 	}
 	
-	public static String requestAcces(String idZona, String email)
+	public static boolean requestAcces(String idZona, String email)
 	{
 		return getClient(email).requestAcces(idZona);
 	}

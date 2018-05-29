@@ -61,7 +61,7 @@ public class Client
 	}
 	
 	//To Do return boolean
-	public String requestAcces(String idZona)
+	public boolean requestAcces(String idZona)
 	{
 		try		
 		{
@@ -71,7 +71,7 @@ public class Client
 			zona = portofelulMeu.getProdus(idZona).getNumeProdus();
 			
 			if(zona == zonaTmp)
-				return "Sunteti deja in aceasta zona";
+				return false;
 			
 			if(zona == "ZonaA")
 				ZoneStats.nrPersoaneZonaA++;
@@ -91,12 +91,12 @@ public class Client
 			else if(zonaTmp == "ZonaD")
 				ZoneStats.nrPersoaneZonaB--;
 			
-			return "Acces aprobat";
+			return true;
 		}catch(NullPointerException e)
 		{
 			
 		}
-		return "Accesul nu va este permis in aceasta zona";
+		return false;
 	}
 
 }
