@@ -13,6 +13,7 @@ public class Receptioner
 		
 	}
 	
+	//inregistrare client
 	public static boolean setNewClient(String email, String password, String nume, String prenume)
 	{	
 		Client clientTmp = new Client(email, nume, prenume);
@@ -31,13 +32,20 @@ public class Receptioner
 			return false;
 	}
 	
-	
+	//login si asignare id-uri unice
 	public static boolean loginClient(String email, String password)
 	{
 		//System.out.println("email " + email + "  " + "password " + password);
 		
+		
 		if(BazaDeDate.loginValidation(email, password))
 		{
+			if(!clientMapTmp.containsKey(email))
+			{
+				Client clientTmp = new Client(email, "", "");
+				clientMapTmp.put(email, clientTmp);
+			}
+		
 			int i;
 		 
 				for(i = 1000; i < maxId; i++)
@@ -48,19 +56,21 @@ public class Receptioner
 						if(tmpIdMap.get(i))
 						{
 							getClient(email).setIdTmp(i);
-							tmpIdMap.put(i, true);
+							tmpIdMap.put(i, false);
+							break;
 						}
 					}
 					else
 					{
 						tmpIdMap.put(i, true);
 						getClient(email).setIdTmp(i);
+						break;
 					}
 				}
 				
 			if(i == maxId)
 				return false;
-						
+					
 			return true;
 		}
 		else
@@ -72,13 +82,11 @@ public class Receptioner
 		return getClient(email).cumparareProdus(dpList);
 	}
 	
-	//TO DO with JOHN
 	public static List<DetaliiProdus> afisareProduse(String tipProdus)
 	{
 		return BazaDeDate.getListaProduse(tipProdus);		
 	}
 	
-	//TO DO with JOHN hardcoded atm
 	public static List<String> afisareCategorii()
 	{
 		List<String> typeList = new LinkedList<String>();
@@ -90,12 +98,12 @@ public class Receptioner
 		return typeList;
 	}
 	
-	//TO DO with JOHN
 	public static Client getClient(String email)
 	{
 		return clientMapTmp.get(email);
 	}
 	
+	//acces in zone
 	public static boolean requestAcces(String idZona, String email)
 	{
 		return getClient(email).requestAcces(idZona);

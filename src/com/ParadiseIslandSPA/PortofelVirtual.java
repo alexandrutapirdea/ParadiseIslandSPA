@@ -5,11 +5,12 @@ import java.util.*;
 public class PortofelVirtual 
 {	
 	private double bilant;
-	private Map<String, DetaliiProdus> chitanta = new HashMap<String, DetaliiProdus>();
+	private Map<String, DetaliiProdus> chitanta; 
 	
 	public PortofelVirtual()
 	{
 		bilant = 0;
+		chitanta = new HashMap<String, DetaliiProdus>();
 	}
 	
 	public void reset()

@@ -60,7 +60,7 @@ public class Client
 		return portofelulMeu.getChitanta();
 	}
 	
-	//To Do return boolean
+	//acces zone
 	public boolean requestAcces(String idZona)
 	{
 		try		
